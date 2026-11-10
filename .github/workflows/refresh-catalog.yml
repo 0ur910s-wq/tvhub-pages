@@ -1,0 +1,123 @@
+name: Refresh TV Hub catalog and publish
+
+on:
+  schedule:
+    # 06:00 EET (07:00 EEST) daily; the MEGA refresh runs on the first day of each month.
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+    inputs:
+      refresh_mega:
+        description: Also refresh all MEGA Classics episode dates (normally monthly)
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tvhub-catalog-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Checkout public Pages repository
+        uses: actions/checkout@v4
+
+      - name: Checkout private source repository
+        uses: actions/checkout@v4
+        with:
+          repository: 0ur910s-wq/tvhub
+          ref: main
+          token: ${{ secrets.TVHUB_SOURCE_TOKEN }}
+          path: source
+
+      - name: Decide whether to refresh MEGA this run
+        id: cadence
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REFRESH_MEGA: ${{ inputs.refresh_mega }}
+        run: |
+          if [[ "$EVENT_NAME" == "workflow_dispatch" && "$REFRESH_MEGA" == "true" ]] || [[ "$EVENT_NAME" == "schedule" && "$(date -u +%d)" == "01" ]]; then
+            echo "refresh_mega=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "refresh_mega=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install channel refresh dependencies
+        working-directory: source
+        run: python -m pip install -r scripts/requirements-channel-episodes.txt
+
+      - name: Refresh ERT, ANT1, Alpha, Star, SKAI and OPEN snapshots
+        working-directory: source
+        run: python scripts/refresh-channel-episodes.py
+
+      - name: Restore MEGA date-fetch checkpoint
+        if: steps.cadence.outputs.refresh_mega == 'true'
+        uses: actions/cache/restore@v4
+        with:
+          path: source/.cache/mega-classics-progress.json
+          key: mega-classics-${{ github.run_id }}
+          restore-keys: mega-classics-
+
+      - name: Install MEGA refresh dependencies
+        if: steps.cadence.outputs.refresh_mega == 'true'
+        working-directory: source
+        run: python -m pip install -r scripts/requirements-mega.txt
+
+      - name: Refresh MEGA Classics snapshots
+        if: steps.cadence.outputs.refresh_mega == 'true'
+        working-directory: source
+        run: python scripts/refresh-mega-classics.py
+
+      - name: Save MEGA date-fetch checkpoint
+        if: always() && steps.cadence.outputs.refresh_mega == 'true' && hashFiles('source/.cache/mega-classics-progress.json') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: source/.cache/mega-classics-progress.json
+          key: mega-classics-${{ github.run_id }}
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.18.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install source dependencies
+        working-directory: source
+        run: pnpm install --frozen-lockfile
+
+      - name: Build static GitHub Pages site
+        working-directory: source
+        run: pnpm build:pages
+
+      - name: Replace public static assets only
+        run: |
+          rm -rf assets api data index.html .nojekyll
+          cp -a source/dist/public/index.html source/dist/public/assets source/dist/public/api source/dist/public/data .
+          touch .nojekyll
+          rm -rf source
+
+      - name: Commit and push changed static assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- index.html .nojekyll assets api data
+          if git diff --cached --quiet; then
+            echo "No public site changes to publish."
+          else
+            git commit -m "Refresh TV Hub catalog snapshots"
+            git push origin main
+          fi
