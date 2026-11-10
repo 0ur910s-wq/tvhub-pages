@@ -1,0 +1,38 @@
+{
+  "sourceUrl": "https://live.ertflix.gr/details/ERT_PS054542_E0",
+  "episodeListUrl": "https://live.ertflix.gr/details/ERT_PS054542_E0",
+  "checkedAt": "2026-11-10T11:34:23+00:00",
+  "coverageNote": "6 καταχωρίσεις που επέστρεψε η επίσημη λίστα",
+  "episodes": [
+    {
+      "title": "Ε1 ‧ Η Μεγάλη Χίμαιρα",
+      "url": "https://live.ertflix.gr/details/ERT_PS047865",
+      "publishedAt": null
+    },
+    {
+      "title": "Ε2 ‧ Η Μεγάλη Χίμαιρα",
+      "url": "https://live.ertflix.gr/details/ERT_PS047864",
+      "publishedAt": null
+    },
+    {
+      "title": "Ε3 ‧ Η Μεγάλη Χίμαιρα",
+      "url": "https://live.ertflix.gr/details/ERT_PS047866",
+      "publishedAt": null
+    },
+    {
+      "title": "Ε4 ‧ Η Μεγάλη Χίμαιρα",
+      "url": "https://live.ertflix.gr/details/ERT_PS047867",
+      "publishedAt": null
+    },
+    {
+      "title": "Ε5 ‧ Η Μεγάλη Χίμαιρα",
+      "url": "https://live.ertflix.gr/details/ERT_PS047868",
+      "publishedAt": null
+    },
+    {
+      "title": "Ε6 ‧ Η Μεγάλη Χίμαιρα",
+      "url": "https://live.ertflix.gr/details/ERT_PS047869",
+      "publishedAt": null
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "programTitle": "Το Νησί",
+  "programUrl": "https://www.megatv.com/ekpompes/43352/to-nisi/",
+  "sourceUrl": "https://www.megatv.com/episodes/?id=S214&type=tvshows",
+  "episodeListUrl": "https://www.megatv.com/episodes/?id=S214&type=tvshows",
+  "episodes": [
+    {
+      "title": "Επεισόδιο 8",
+      "url": "https://www.megatv.com/tvshows/51725/epeisodio-8-31/",
+      "publishedAt": "2026-11-09T22:30:51+03:00"
+    },
+    {
+      "title": "Επεισόδιο 7",
+      "url": "https://www.megatv.com/tvshows/51724/epeisodio-7-30/",
+      "publishedAt": "2026-11-05T23:00:07+03:00"
+    },
+    {
+      "title": "Επεισόδιο 6",
+      "url": "https://www.megatv.com/tvshows/51723/epeisodio-6-31/",
+      "publishedAt": "2026-11-04T23:00:47+03:00"
+    },
+    {
+      "title": "Επεισόδιο 5",
+      "url": "https://www.megatv.com/tvshows/51722/epeisodio-5-31/",
+      "publishedAt": "2026-11-03T23:00:09+03:00"
+    },
+    {
+      "title": "Επεισόδιο 4",
+      "url": "https://www.megatv.com/tvshows/51721/epeisodio-4-31/",
+      "publishedAt": "2026-11-02T23:00:38+03:00"
+    },
+    {
+      "title": "Επεισόδιο 3",
+      "url": "https://www.megatv.com/tvshows/51720/epeisodio-3-31/",
+      "publishedAt": "2026-10-29T23:00:31+03:00"
+    },
+    {
+      "title": "Επεισόδιο 2",
+      "url": "https://www.megatv.com/tvshows/51719/epeisodio-2-31/",
+      "publishedAt": "2026-10-27T23:00:23+03:00"
+    },
+    {
+      "title": "Επεισόδιο 1",
+      "url": "https://www.megatv.com/tvshows/51718/epeisodio-1-33/",
+      "publishedAt": "2026-10-26T23:00:10+03:00"
+    }
+  ]
+}

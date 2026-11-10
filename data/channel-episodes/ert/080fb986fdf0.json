@@ -1,0 +1,48 @@
+{
+  "sourceUrl": "https://live.ertflix.gr/details/ERT_PS054065_E0",
+  "episodeListUrl": "https://live.ertflix.gr/details/ERT_PS054065_E0",
+  "checkedAt": "2026-11-10T11:34:23+00:00",
+  "coverageNote": "8 καταχωρίσεις που επέστρεψε η επίσημη λίστα",
+  "episodes": [
+    {
+      "title": "Ε1 ‧ Η Επιστροφή",
+      "url": "https://live.ertflix.gr/details/ERT_PS035733",
+      "publishedAt": null
+    },
+    {
+      "title": "Ε2 ‧ Η Φωτογραφία",
+      "url": "https://live.ertflix.gr/details/ERT_PS035734",
+      "publishedAt": null
+    },
+    {
+      "title": "Ε3 ‧ Ο Σκωτσέζος",
+      "url": "https://live.ertflix.gr/details/ERT_PS035735",
+      "publishedAt": null
+    },
+    {
+      "title": "Ε4 ‧ Αίγινα",
+      "url": "https://live.ertflix.gr/details/ERT_PS035736",
+      "publishedAt": null
+    },
+    {
+      "title": "Ε5 ‧ Αίγυπτος",
+      "url": "https://live.ertflix.gr/details/ERT_PS035737",
+      "publishedAt": null
+    },
+    {
+      "title": "Ε6 ‧ Αλέξης",
+      "url": "https://live.ertflix.gr/details/ERT_PS035738",
+      "publishedAt": null
+    },
+    {
+      "title": "Ε7 ‧ Δεκεμβριανά",
+      "url": "https://live.ertflix.gr/details/ERT_PS035739",
+      "publishedAt": null
+    },
+    {
+      "title": "Ε8 ‧ Το Απαραίτητο Φως",
+      "url": "https://live.ertflix.gr/details/ERT_PS035740",
+      "publishedAt": null
+    }
+  ]
+}
