@@ -4,4 +4,4 @@ This repository contains only the static site build and the public catalog data 
 
 Site: https://0ur910s-wq.github.io/tvhub-pages/
 
-The `Deploy GitHub Pages` workflow publishes the contents of `site/` when changes are pushed to `main`.
+GitHub Pages serves this static build from the root of the `main` branch. The public files are generated from the private source repository; do not edit application assets here. The source repository remains private.
